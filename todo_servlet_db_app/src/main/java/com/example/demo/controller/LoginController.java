@@ -47,4 +47,13 @@ public class LoginController {
     model.addAttribute("error", "ユーザー名またはパスワードが正しくありません");
     return "login";
   }
+
+  @GetMapping("/logout")
+  public String logout(HttpSession session) {
+    if (session != null) {
+      session.invalidate();
+    }
+
+    return "logout";
+  }
 }
