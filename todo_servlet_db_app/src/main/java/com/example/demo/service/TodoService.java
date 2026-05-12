@@ -7,6 +7,9 @@ import com.example.demo.entity.TodoItem;
 import com.example.demo.repository.TodoItemRepository;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * . TodoItemのサービスクラス
+ */
 @Service
 @Transactional
 @RequiredArgsConstructor
