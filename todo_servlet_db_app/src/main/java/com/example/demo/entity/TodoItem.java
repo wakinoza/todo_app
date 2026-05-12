@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 /**
@@ -21,6 +23,8 @@ public class TodoItem {
   private Integer id;
 
   /** . テキスト入力欄の文字列情報 */
+  @NotBlank
+  @Size(max = 100)
   private String text;
 
   /** . 進捗情報を表す文字列情報 */
