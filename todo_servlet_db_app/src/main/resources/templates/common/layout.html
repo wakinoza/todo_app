@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- headフラグメント -->
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <title th:text="${title}">Todo管理ページ</title>
+    <!-- ここに共通のCSSなどを書く -->
+</head>
+
+<body>
+    <!-- footerフラグメント -->
+    <footer th:fragment="footer">
+        <hr>
+        <p>© 2026 Todo App</p>
+    </footer>
+</body>
+</html>
