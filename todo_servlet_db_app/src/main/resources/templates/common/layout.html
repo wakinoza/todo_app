@@ -10,9 +10,11 @@
 
 </head>
 <body>
-    <div th:fragment="header">
-        <!-- todo:ナビゲーションバーなどをここに入れる -->
-    </div>
+	<nav th:fragment="navbar" class="navbar navbar-dark bg-primary mb-4">
+	        <div class="container">
+	            <a class="navbar-brand" href="#">Todo アプリケーション</a>
+	        </div>
+	    </nav>
 	
 	<footer th:fragment="footer" class="mt-5 py-3 text-center text-muted border-top">
 	        <p>© 2026 Todo App</p>
