@@ -84,3 +84,5 @@ logs/
 ### DB ###
 db.sqlite3
 dump.sql
+
+.project_backup
