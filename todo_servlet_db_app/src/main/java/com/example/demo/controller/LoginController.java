@@ -19,7 +19,7 @@ public class LoginController {
 
   @GetMapping("/login")
   public String viewLogin() {
-    return "login"; // src/main/resources/templates/login.html を表示
+    return "login";
   }
 
   @PostMapping("/login")

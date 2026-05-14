@@ -25,7 +25,6 @@ public class UserService {
    */
   public User login(String name, String rawPassword) {
     return repository.findByName(name)
-        .filter(user -> passwordEncoder.matches(rawPassword, user.getPassword())) // 照合
-        .orElse(null);
+        .filter(user -> passwordEncoder.matches(rawPassword, user.getPassword())).orElse(null);
   }
 }
