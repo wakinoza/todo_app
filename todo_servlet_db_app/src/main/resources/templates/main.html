@@ -17,11 +17,12 @@
     <div class="card mb-4 border-0 shadow-sm">
         <div class="card-body">
             <form th:action="@{/todo/create}" method="post" class="row g-2">
-                <div class="col-sm-9">
+                <div class="col-sm-8">
                     <input type="text" name="text" th:value="${enteredText != null ? enteredText : ''}"class="form-control" placeholder="新しいTodoを入力...">
                 </div>
-                <div class="col-sm-3">
-                    <button type="submit" class="btn btn-primary w-100">Todoを新規追加</button>
+				<div class="col-sm-4 d-flex gap-2">
+					<button type="reset" class="btn btn-outline-secondary text-nowrap">入力をクリア</button>
+                    <button type="submit" class="btn btn-primary w-100 text-nowrap">Todoを追加</button>
                 </div>
             </form>
         </div>
