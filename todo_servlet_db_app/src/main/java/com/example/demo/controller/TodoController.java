@@ -48,6 +48,10 @@ public class TodoController {
 
     if (text == null || text.trim().isEmpty()) {
       model.addAttribute("errorMsg", "Todoを入力してください。");
+
+    } else if (text.length() > 100) {
+      model.addAttribute("errorMsg", "Todoは100文字以内で入力してください。");
+      model.addAttribute("enteredText", text);
     } else {
       TodoItem item = new TodoItem();
       item.setText(text);
