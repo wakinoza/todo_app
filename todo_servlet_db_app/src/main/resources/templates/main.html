@@ -18,7 +18,7 @@
         <div class="card-body">
             <form th:action="@{/todo/create}" method="post" class="row g-2">
                 <div class="col-sm-9">
-                    <input type="text" name="text" class="form-control" placeholder="新しいTodoを入力...">
+                    <input type="text" name="text" th:value="${enteredText != null ? enteredText : ''}"class="form-control" placeholder="新しいTodoを入力...">
                 </div>
                 <div class="col-sm-3">
                     <button type="submit" class="btn btn-primary w-100">Todoを新規追加</button>
