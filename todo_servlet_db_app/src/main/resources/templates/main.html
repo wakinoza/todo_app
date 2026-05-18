@@ -48,7 +48,8 @@
                 <li th:each="todoItem : ${todoItemList}" class="list-group-item d-flex justify-content-between align-items-center py-3">
                     <div>
                         <span th:text="${todoItem.progress}" 
-                              th:classappend="${todoItem.progress == '完了済'} ? 'bg-success' : 'bg-info text-dark'"
+						th:classappend="${todoItem.progress == '完了済'} ? 'bg-success' : 
+						                          (${todoItem.progress == '未実施'} ? 'bg-warning text-dark' : 'bg-info text-dark')"
                               class="badge rounded-pill me-2"></span>
                         <span th:text="${todoItem.text}"></span>
                     </div>
