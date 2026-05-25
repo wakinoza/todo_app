@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,17 +17,12 @@ import lombok.RequiredArgsConstructor;
 public class TodoController {
 
   private final TodoService todoService;
-  private final HttpSession session;
 
   /**
    * 一覧表示 (GET /todo/list)
    */
   @GetMapping("/list")
   public String list(Model model) {
-    // Spring Security導入前までの暫定処置
-    if (session.getAttribute("loginUser") == null) {
-      return "redirect:/login";
-    }
 
     List<TodoItem> todoItemList = todoService.findAllTasks();
     model.addAttribute("todoItemList", todoItemList);
@@ -41,10 +35,6 @@ public class TodoController {
    */
   @PostMapping("/create")
   public String create(@RequestParam String text, Model model) {
-    // Spring Security導入前までの暫定処置
-    if (session.getAttribute("loginUser") == null)
-      return "redirect:/login";
-
 
     if (text == null || text.trim().isEmpty()) {
       model.addAttribute("errorMsg", "Todoを入力してください。");
@@ -59,7 +49,7 @@ public class TodoController {
     }
 
     model.addAttribute("todoItemList", todoService.findAllTasks());
-    return "main";
+    return "redirect:/todo/list";
   }
 
   /**
@@ -67,14 +57,11 @@ public class TodoController {
    */
   @PostMapping("/update")
   public String update(@RequestParam Integer id, Model model) {
-    // Spring Security導入前までの暫定処置
-    if (session.getAttribute("loginUser") == null)
-      return "redirect:/login";
 
     todoService.updateProgress(id);
 
 
     model.addAttribute("todoItemList", todoService.findAllTasks());
-    return "main";
+    return "redirect:/todo/list";
   }
 }
