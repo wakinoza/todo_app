@@ -23,7 +23,7 @@
                     <input type="text" name="text" th:value="${enteredText != null ? enteredText : ''}"class="form-control" placeholder="新しいTodoを入力...">
                 </div>
 				<div class="col-sm-4 d-flex gap-2">
-					<button type="reset" class="btn btn-outline-secondary text-nowrap">入力をクリア</button>
+					<button type="button" onclick="document.querySelector('input[name=\'text\']').value=''" class="btn btn-outline-secondary text-nowrap">入力をクリア</button>
                     <button type="submit" class="btn btn-primary w-100 text-nowrap">Todoを追加</button>
                 </div>
             </form>
