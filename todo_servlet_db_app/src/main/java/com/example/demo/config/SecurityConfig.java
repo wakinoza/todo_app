@@ -16,7 +16,7 @@ public class SecurityConfig {
         auth -> auth.requestMatchers("/css/**", "/js/**", "/images/**", "/login").permitAll()
             .anyRequest().authenticated())
 
-        .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/todo/loginResult", true)
+        .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/todo/main", true)
             .loginProcessingUrl("/login").permitAll())
 
         .logout(logout -> logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout")
