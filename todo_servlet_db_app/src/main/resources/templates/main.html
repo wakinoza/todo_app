@@ -8,7 +8,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1 class="h3 mb-0">Todo管理メインページ</h1>
         <div class="text-end">
-            <span class="me-2" th:text="${#authentication.principal.name} + 'さん、ログイン中'"></span>
+            <span class="me-2" th:text="${loginUsername} + 'さん、ログイン中'"></span>
 			<form th:action="@{/logout}" method="post" class="d-inline">
 			     <button type="submit" class="btn btn-outline-secondary btn-sm">ログアウト</button>
 			</form>
