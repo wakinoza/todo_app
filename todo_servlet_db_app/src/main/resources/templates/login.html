@@ -16,17 +16,23 @@
                     </div>
                     <div class="card-body p-4">
                         <p class="text-center text-muted mb-4">ようこそ。ログインしてください。</p>
+						
+						<p th:if="${param.error}" class="alert alert-danger">
+                            ユーザー名またはパスワードが正しくありません
+                        </p>
                         
-                        <p th:if="${error}" th:text="${error}" class="alert alert-danger"></p>
-
+                        <p th:if="${param.logout}" class="alert alert-success">
+                            ログアウトしました
+                        </p>
+						
                         <form th:action="@{/login}" method="post">
                             <div class="mb-3">
                                 <label class="form-label font-weight-bold">ユーザー名</label>
-                                <input type="text" name="name" class="form-control form-control-lg" required>
+                                <input type="text" name="username" class="form-control form-control-lg" required>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label font-weight-bold">パスワード</label>
-                                <input type="password" name="pass" class="form-control form-control-lg" required>
+                                <input type="password" name="password" class="form-control form-control-lg" required>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm mt-3">ログイン</button>
                         </form>
