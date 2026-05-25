@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.entity.TodoItem;
 import com.example.demo.entity.User;
 import com.example.demo.service.TodoService;
@@ -42,21 +43,21 @@ public class TodoController {
    * 新規作成 (POST /todo/create)
    */
   @PostMapping("/create")
-  public String create(@RequestParam String text, Model model) {
+  public String create(@RequestParam String text, RedirectAttributes redirectAttributes) {
 
     if (text == null || text.trim().isEmpty()) {
-      model.addAttribute("errorMsg", "Todoを入力してください。");
+      // 💡addFlashAttribute を使うと、リダイレクト先まで1回だけデータを維持できる
+      redirectAttributes.addFlashAttribute("errorMsg", "Todoを入力してください。");
 
     } else if (text.length() > 100) {
-      model.addAttribute("errorMsg", "Todoは100文字以内で入力してください。");
-      model.addAttribute("enteredText", text);
+      redirectAttributes.addFlashAttribute("errorMsg", "Todoは100文字以内で入力してください。");
+      redirectAttributes.addFlashAttribute("enteredText", text);
     } else {
       TodoItem item = new TodoItem();
       item.setText(text);
       todoService.save(item);
     }
 
-    model.addAttribute("todoItemList", todoService.findAllTasks());
     return "redirect:/todo/list";
   }
 
