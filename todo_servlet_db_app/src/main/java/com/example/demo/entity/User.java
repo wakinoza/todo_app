@@ -56,37 +56,5 @@ public class User implements UserDetails {
   public String getPassword() {
     return this.password;
   }
-
-  /**
-   * アカウントの有効期限が切れていないかを検証します。 今回は期限切れの仕組みはないため、常に「切れていない（true）」を返します。
-   */
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
-
-  /**
-   * アカウントがロックされていないかを検証します。 常に「ロックされていない（true）」を返します。
-   */
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
-
-  /**
-   * パスワードの有効期限が切れていないかを検証します。 常に「切れていない（true）」を返します。
-   */
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
-
-  /**
-   * アカウントが有効（利用可能）であるかを検証します。 常に「有効（true）」を返します。
-   */
-  @Override
-  public boolean isEnabled() {
-    return true;
-  }
 }
 
