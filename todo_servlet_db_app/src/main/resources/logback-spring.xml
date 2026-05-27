@@ -22,6 +22,8 @@
     <springProfile name="default,dev">
         <root level="INFO">
             <appender-ref ref="CONSOLE" />
+<!--            ログが取れているかの確認-->
+            <appender-ref ref="FILE" />  
         </root>
         <logger name="com.example.demo" level="DEBUG" />
         <logger name="org.hibernate.SQL" level="DEBUG" />
