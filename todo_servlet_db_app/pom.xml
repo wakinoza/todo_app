@@ -127,7 +127,12 @@
 						</goals>
 					</execution>
 				</executions>
-			</plugin>
+				<configuration>
+                    <excludes>
+                        <exclude>com/example/demo/SpringtTodoAppApplication.class</exclude>
+                    </excludes>
+                </configuration>
+             </plugin>
 		</plugins>
 	</build>
 
