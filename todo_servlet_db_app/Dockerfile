@@ -14,6 +14,8 @@ WORKDIR /app
 
 COPY --from=builder /app/target/*.jar app.jar
 
+RUN mkdir logs && chown -R 1000:1000 /app
+
 USER 1000
 
 EXPOSE 8080
