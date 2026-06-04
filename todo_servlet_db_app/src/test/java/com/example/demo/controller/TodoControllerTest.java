@@ -87,6 +87,19 @@ class TodoControllerTest {
     }
 
     @Test
+    @DisplayName("入力値が100文字（境界値の最大値）の場合、正常に保存されて一覧画面へリダイレクトされること")
+    void shouldSucceedWhenTextIsExactly100Characters() throws Exception {
+      String maxValidText = "a".repeat(100);
+
+      mockMvc
+          .perform(
+              post("/todo/create").param("text", maxValidText).with(csrf()).with(user("admin")))
+          .andExpect(status().is3xxRedirection()).andExpect(redirectedUrl("/todo/list"));
+
+      verify(todoService, times(1)).save(any());
+    }
+
+    @Test
     @DisplayName("文字数が100文字を超過している場合、保存されずにエラーメッセージと入力値が引き継がれること")
     void shouldFailWithErrorMessageWhenInputExceedsLimit() throws Exception {
       String longText = "a".repeat(101);
