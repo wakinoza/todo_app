@@ -50,7 +50,7 @@ public class TodoController {
   public String create(@RequestParam String text, RedirectAttributes redirectAttributes) {
     log.info("Todo新規作成リクエストを受信しました。入力された文字列: [{}]", text);
 
-    if (text == null || text.trim().isEmpty()) {
+    if (text.trim().isEmpty()) {
       log.warn("Todo作成拒否: 入力値が空、または空白のみです。");
       redirectAttributes.addFlashAttribute("errorMsg", "Todoを入力してください。");
 
