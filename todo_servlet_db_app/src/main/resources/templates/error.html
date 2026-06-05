@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{common/layout :: head('エラー')}"></head>
+<body class="bg-light">
+<div class="container py-5 text-center">
+    <div class="card border-0 shadow-sm p-5 mx-auto" style="max-width: 500px;">
+        <h1 class="text-danger mb-4">予期せぬエラーが発生しました</h1>
+        <p class="text-muted mb-4">
+            申し訳ございません。システムエラーが発生したか、お探しのページが見つかりません。<br>
+            一度トップページに戻り、やり直してください。
+        </p>
+        <a th:href="@{/todo/list}" class="btn btn-primary">Todo一覧へ戻る</a>
+    </div>
+</div>
+</body>
+</html>

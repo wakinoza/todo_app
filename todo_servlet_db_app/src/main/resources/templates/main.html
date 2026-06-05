@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{common/layout :: head('Todo一覧 - 管理メイン')}"></head>
+<body class="bg-light">
+
+<div class="container py-4">
+    <!-- ヘッダーエリア -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0">Todo管理メインページ</h1>
+        <div class="text-end">
+            <span class="me-2" th:text="${loginUsername} + 'さん、ログイン中'"></span>
+			<form th:action="@{/logout}" method="post" class="d-inline">
+			     <button type="submit" class="btn btn-outline-secondary btn-sm">ログアウト</button>
+			</form>
+        </div>
+    </div>
+
+    <!-- 新規追加フォーム -->
+    <div class="card mb-4 border-0 shadow-sm">
+        <div class="card-body">
+            <form th:action="@{/todo/create}" method="post" class="row g-2">
+                <div class="col-sm-8">
+                    <input type="text" name="text" th:value="${enteredText != null ? enteredText : ''}"class="form-control" placeholder="新しいTodoを入力...">
+                </div>
+				<div class="col-sm-4 d-flex gap-2">
+					<button type="button" onclick="document.querySelector('input[name=\'text\']').value=''" class="btn btn-outline-secondary text-nowrap">入力をクリア</button>
+                    <button type="submit" class="btn btn-primary w-100 text-nowrap">Todoを追加</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- エラーメッセージ -->
+    <div th:if="${errorMsg}" class="alert alert-danger" role="alert" th:text="${errorMsg}"></div>
+
+    <!-- Todo一覧 -->
+    <div class="card border-0 shadow-sm">
+
+        <div class="card-header bg-primary text-white py-3">
+            <h2 class="h5 mb-0">Todo一覧</h2>
+        </div>
+        
+        <div class="card-body p-0">
+            <!-- Todoがない場合 -->
+            <div th:if="${#lists.isEmpty(todoItemList)}" class="p-4 text-center text-muted">
+                Todoはありません
+            </div>
+
+            <!-- Todoリスト -->
+            <ul class="list-group list-group-flush">
+                <li th:each="todoItem : ${todoItemList}" class="list-group-item d-flex justify-content-between align-items-center py-3">
+                    <div>
+                        <span th:text="${todoItem.progress}" 
+						th:classappend="${todoItem.progress == '完了済'} ? 'bg-success' : 
+						                          (${todoItem.progress == '未実施'} ? 'bg-warning text-dark' : 'bg-info text-dark')"
+                              class="badge rounded-pill me-2"></span>
+                        <span th:text="${todoItem.text}"></span>
+                    </div>
+
+                    <form th:action="@{/todo/update}" method="post">
+                        <input type="hidden" name="id" th:value="${todoItem.id}">
+                        
+                        <button th:if="${todoItem.progress == '完了済'}" 
+                                type="submit" class="btn btn-warning btn-sm">todoを削除</button>
+                        
+                        <button th:unless="${todoItem.progress == '完了済'}" 
+                                type="submit" class="btn btn-primary btn-sm">進捗を更新</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{common/layout :: footer}"></div>
+</body>
+</html>
