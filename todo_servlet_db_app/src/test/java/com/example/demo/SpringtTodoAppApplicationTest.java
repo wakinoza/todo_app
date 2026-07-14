@@ -1,7 +1,7 @@
 package com.example.demo;
 
 
-class SpringtTodoAppApplicationTest {
+class SpringTodoAppApplicationTest {
 
 
 }
