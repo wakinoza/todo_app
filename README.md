@@ -62,3 +62,36 @@ Spring Bootで作成したTodoアプリをAWSへ段階的にデプロイする�
 - GitHub
 - GitHub Actions
 
+## ローカル開発環境（VS Code）
+
+### 前提
+
+- Java 21
+- Docker Desktop
+- VS Code(Extension Pack for Java)
+
+### 初回セットアップ
+
+1. リポジトリをクローン
+2. `.env.example` を `.env` にコピー
+3. `.env.local.example` を `.env.local` にコピー
+4. 必要に応じて接続情報を編集
+
+### MySQLの起動
+
+```bash
+docker compose up -d db
+```
+
+### Spring Bootの起動
+
+VS Codeの「実行とデバッグ」から以下を選択して実行します
+
+```bash
+Spring Boot (Local)
+```
+
+### 動作確認
+「http://localhost:8080」へアクセスします。
+
+ユーザー名は「yamada」、パスワードは「yamada_password」
