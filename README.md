@@ -91,7 +91,35 @@ VS Codeの「実行とデバッグ」から以下を選択して実行します
 Spring Boot (Local)
 ```
 
-### 動作確認
-「http://localhost:8080」へアクセスします。
+`launch.json` の `envFile` により、`.env.local` が自動的に読み込まれます。
 
-ユーザー名は「yamada」、パスワードは「yamada_password」
+`launch.json` の envFile は VS Code の「実行とデバッグ」で起動した場合のみ有効です。`java -jar` で直接起動した場合は適用されないため、ローカルでは run-local.ps1 を利用してください。
+
+### JARファイルの起動
+
+JARファイルを直接実行する場合は、`launch.json` は利用されないため、`.env.local` は自動では読み込まれません。
+
+ローカル環境では、プロジェクトルートに用意した起動スクリプトを利用します。
+
+```powershell
+.\run-local.ps1 -Jar
+```
+
+このスクリプトは以下を自動で行います。
+
+- `.env.local` の読み込み
+- 環境変数の設定（現在のPowerShellプロセスのみ）
+- Spring Boot JARの起動
+
+### 動作確認
+
+ブラウザで以下へアクセスします。
+
+```
+http://localhost:8080
+```
+
+ログイン情報
+
+- ユーザー名：`yamada`
+- パスワード：`yamada_password`
