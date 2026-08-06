@@ -4,8 +4,16 @@ param(
 )
 
 
+# プロジェクト外の .env.local
+$envFile = "C:\Secrets\todo_app\.env.local"
+
+if (-not (Test-Path $envFile)) {
+    Write-Error ".env.local が見つかりません: $envFile"
+    exit 1
+}
+
 # .env.local を読み込む
-Get-Content .env.local |
+Get-Content $envFile |
 Where-Object {
     $_ -and
     -not $_.StartsWith("#") -and

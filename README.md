@@ -17,8 +17,6 @@ Spring Bootで作成したTodoアプリをAWSへ段階的にデプロイする�
 
 ✅ 開発環境構築
 
-⬜ GitHub Actions
-
 ⬜ EC2デプロイ
 
 ⬜ RDS導入
@@ -73,8 +71,8 @@ Spring Bootで作成したTodoアプリをAWSへ段階的にデプロイする�
 ### 初回セットアップ
 
 1. リポジトリをクローン
-2. `.env.example` を `.env` にコピー
-3. `.env.local.example` を `.env.local` にコピー
+2. `.env.example` をコピーし、必要項目を記入して`.env`を作成。プロジェクト外（例 C:\Secrets\todo_app\.env）へ配置してください。
+3. `.env.local.example` をコピーし、必要項目を記入して`.env.local`を作成。プロジェクト外（例 C:\Secrets\todo_app\.env.local）へ配置してください。
 4. 必要に応じて接続情報を編集
 
 ### MySQLの起動
