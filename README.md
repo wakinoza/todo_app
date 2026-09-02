@@ -8,16 +8,12 @@ Spring Bootで作成したTodoアプリをAWSへ段階的にデプロイする�
 完成したシステムだけではなく、
 設計理由・構築手順・改善の過程もポートフォリオとして公開します。
 
-## 開発方針
-
-- 段階的にAWS構成へ移行する
-- 実務で一般的なベストプラクティスを意識する
 
 ## 現在の進捗
 
 ✅ 開発環境構築
 
-⬜ EC2デプロイ
+✅  EC2デプロイ
 
 ⬜ RDS導入
 
@@ -27,19 +23,23 @@ Spring Bootで作成したTodoアプリをAWSへ段階的にデプロイする�
 
 ⬜ ECS(Fargate)導入
 
-## システム構成
+## AWSの構成
 
 現在
 
 ```plain
-+-------------+
-| Spring Boot |
-+-------------+
-       │
-       ▼
-+-------------+
-|    MySQL    |
-+-------------+
+Internet
+    │
+    ▼
+Internet Gateway
+    │
+    ▼
+Public Subnet
+    │
+    ▼
+EC2
+ ├─ Spring Boot
+ └─ MySQL
 ```
 
 ## 使用技術
@@ -58,7 +58,14 @@ Spring Bootで作成したTodoアプリをAWSへ段階的にデプロイする�
 
 - Git
 - GitHub
-- GitHub Actions
+
+### AWS
+
+- Amazon VPC
+- Amazon EC2
+- AWS Secrets Manager
+- AWS Identity and Access Management（IAM）
+
 
 ## ローカル開発環境（VS Code）
 
