@@ -77,6 +77,7 @@ Private Subnet
 
 ### 前提
 
+- Windows11
 - Java 21
 - Docker Desktop
 - VS Code(Extension Pack for Java)
@@ -88,10 +89,13 @@ Private Subnet
 3. `.env.local.example` をコピーし、必要項目を記入して`.env.local`を作成。プロジェクト外（例 C:\Secrets\todo_app\.env.local）へ配置してください。
 4. 必要に応じて接続情報を編集
 
-### MySQLの起動
+### MySQLコンテナの起動
+
+MySQLはDockerコンテナを利用します。
+MySQLコンテナを起動する場合は、以下のスクリプトを実行します。
 
 ```bash
-docker compose up -d db
+.\start-db.ps1
 ```
 
 ### Spring Bootの起動
@@ -108,7 +112,7 @@ Spring Boot (Local)
 
 ### JARファイルの起動
 
-JARファイルを直接実行する場合は、`launch.json` は利用されないため、`.env.local` は自動では読み込まれません。
+JARファイルを作成して実行する場合は、`launch.json` は利用されないため、`.env.local` は自動では読み込まれません。
 
 ローカル環境では、プロジェクトルートに用意した起動スクリプトを利用します。
 
