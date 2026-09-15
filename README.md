@@ -17,7 +17,7 @@ Spring Bootで作成したTodoアプリをAWSへ段階的にデプロイする�
 
 ✅ RDS導入
 
-⬜ Docker化
+✅ Docker化
 
 ⬜ ALB導入
 
@@ -38,7 +38,8 @@ Public Subnet
     │
     ▼
 EC2
-└─ Spring Boot
+└─ Docker
+   └─ Spring Boot
        │
        │ TCP 3306
        ▼
@@ -71,6 +72,10 @@ Private Subnet
 ‐ Amazon RDS for MySQL
 - AWS Secrets Manager
 - AWS Identity and Access Management（IAM）
+
+### Container
+
+- Docker
 
 
 ## ローカル開発環境（VS Code）
