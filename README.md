@@ -13,15 +13,17 @@ Spring Bootで作成したTodoアプリをAWSへ段階的にデプロイする�
 
 ✅ 開発環境構築
 
-✅  EC2デプロイ
+✅ EC2デプロイ
 
 ✅ RDS導入
 
 ✅ Docker化
 
-⬜ ALB導入
+✅ ALB導入
 
 ⬜ ECS(Fargate)導入
+
+⬜ 運用体制の導入
 
 ## AWSの構成
 
@@ -31,20 +33,37 @@ Spring Bootで作成したTodoアプリをAWSへ段階的にデプロイする�
 Internet
     │
     ▼
-Internet Gateway
-    │
-    ▼
-Public Subnet
-    │
-    ▼
-EC2
-└─ Docker
-   └─ Spring Boot
-       │
-       │ TCP 3306
-       ▼
-Private Subnet
-└─ RDS(MySQL)
+┌────────────────────────────────────────────────┐
+│ VPC : todo-app-vpc                             │
+│                                                │
+│  ┌───────────────────────┐                     │
+│  │ Public Subnet         │                     │
+│  │                       │                     │
+│  │  ┌───────────────┐    │                     │
+│  │  │      ALB      │    │                     │
+│  │  │    HTTP:80    │    │                     │
+│  │  └───────┬───────┘    │                     │
+│  │          │            │                     │
+│  │          ▼            │                     │
+│  │  ┌───────────────┐    │                     │
+│  │  │      EC2      │    │                     │
+│  │  │     :8080     │    │                     │
+│  │  │    Docker     │    │                     │
+│  │  │  Spring Boot  │    │                     │
+│  │  └───────┬───────┘    │                     │
+│  └──────────┼────────────┘                     │
+│             │ TCP: 3306                        │
+│             ▼                                  │
+│  ┌───────────────────────┐                     │
+│  │ Private Subnet        │                     │
+│  │                       │                     │
+│  │  ┌───────────────┐    │                     │
+│  │  │      RDS      │    │                     │
+│  │  │     MySQL     │    │                     │
+│  │  └───────────────┘    │                     │
+│  └───────────────────────┘                     │
+│                                                │
+└────────────────────────────────────────────────┘
 ```
 
 
@@ -72,6 +91,7 @@ Private Subnet
 ‐ Amazon RDS for MySQL
 - AWS Secrets Manager
 - AWS Identity and Access Management（IAM）
+- Application Load Balancer
 
 ### Container
 
