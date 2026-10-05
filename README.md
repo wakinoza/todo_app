@@ -21,7 +21,7 @@ Spring Bootで作成したTodoアプリをAWSへ段階的にデプロイする�
 
 ✅ ALB導入
 
-⬜ ECS(Fargate)導入
+✅ ECS(Fargate)導入
 
 ⬜ 運用体制の導入
 
@@ -46,9 +46,8 @@ Internet
 │  │          │            │                     │
 │  │          ▼            │                     │
 │  │  ┌───────────────┐    │                     │
-│  │  │      EC2      │    │                     │
+│  │  │  ECS(Fargate) │    │                     │
 │  │  │     :8080     │    │                     │
-│  │  │    Docker     │    │                     │
 │  │  │  Spring Boot  │    │                     │
 │  │  └───────┬───────┘    │                     │
 │  └──────────┼────────────┘                     │
@@ -64,6 +63,17 @@ Internet
 │  └───────────────────────┘                     │
 │                                                │
 └────────────────────────────────────────────────┘
+
+        ┌───────────────────┐
+        │    ECR Private    │
+        │  Container Image  │
+        └─────────┬─────────┘
+                  │
+                  ▼
+             ECS(Fargate)
+
+
+
 ```
 
 
@@ -92,6 +102,9 @@ Internet
 - AWS Secrets Manager
 - AWS Identity and Access Management（IAM）
 - Application Load Balancer
+- Amazon ECS(Fargate)
+- Amazon Elastic Container Registry
+- Amazon CloudWatch Logs
 
 ### Container
 
